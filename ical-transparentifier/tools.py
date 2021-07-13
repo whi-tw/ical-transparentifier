@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 
 import requests
+import tatsu.exceptions
 from ics import Calendar
 from requests.adapters import HTTPAdapter
 
@@ -16,10 +17,9 @@ def _standardize_uri(uri: str) -> str:
     return parsed.geturl()
 
 
-def futz_with_ical(uri: str, strip: str) -> str:
+def futz_with_ical(uri: str, strip: str) -> (str, bool):
     cal_uri = _standardize_uri(uri)
     original_cal = rsession.get(cal_uri).text
-
     c = Calendar(original_cal)
     cn = Calendar()
     for event in c.events:
