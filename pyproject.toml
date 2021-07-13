@@ -5,7 +5,7 @@ description = "Proxy that modifies events in a webcal and makes them transparent
 authors = ["Tom Whitwell <tom@whi.tw>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "3.9.6"
 requests = "^2.25.1"
 uvicorn = "^0.14.0"
 fastapi = "^0.66.0"
