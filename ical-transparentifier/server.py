@@ -15,9 +15,9 @@ async def root():
 
 
 @app.get("/cal/{cal_uri:path}", status_code=status.HTTP_400_BAD_REQUEST)
-async def parse_cal(cal_uri: str, response: Response, strip: str = None):
+async def parse_cal(response: Response, cal_uri: str, strip: str = None):
     try:
-        updated_cal = tools.futz_with_ical(cal_uri, strip)
+        updated_cal, removed_items = tools.futz_with_ical(cal_uri, strip)
     except FailedParse as e:
         return {"error": "Could not parse ical structure", "url": cal_uri}
     except ConnectionError:
@@ -29,5 +29,4 @@ async def parse_cal(cal_uri: str, response: Response, strip: str = None):
     except RemoteProtocolError:
         return {"error": "ensure all spaces in url are replaced with '+'", "url": cal_uri}
 
-    response.status_code = status.HTTP_200_OK
-    return PlainTextResponse(content=updated_cal, media_type="text/calendar")
+    return PlainTextResponse(content=updated_cal, media_type="text/calendar", headers={"X-Removed-Event-Count": str(removed_items)})
