@@ -1,4 +1,15 @@
 [[package]]
+name = "arrow"
+version = "0.14.7"
+description = "Better dates & times for Python"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[package.dependencies]
+python-dateutil = "*"
+
+[[package]]
 name = "asgiref"
 version = "3.4.1"
 description = "ASGI specs, helper code, and adapters"
@@ -107,6 +118,20 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "ics"
+version = "0.7"
+description = "Python icalendar (rfc5545) parser"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+arrow = ">=0.11,<0.15"
+python-dateutil = "*"
+six = ">1.5"
+tatsu = ">4.2"
+
+[[package]]
 name = "idna"
 version = "2.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -197,6 +222,17 @@ toml = "*"
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+name = "python-dateutil"
+version = "2.8.1"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "requests"
 version = "2.25.1"
 description = "Python HTTP for Humans."
@@ -215,6 +251,14 @@ security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "starlette"
 version = "0.14.2"
 description = "The little ASGI library that shines."
@@ -224,6 +268,17 @@ python-versions = ">=3.6"
 
 [package.extras]
 full = ["aiofiles", "graphene", "itsdangerous", "jinja2", "python-multipart", "pyyaml", "requests"]
+
+[[package]]
+name = "tatsu"
+version = "5.6.1"
+description = "TatSu takes a grammar in a variation of EBNF as input, and outputs a memoizing PEG/Packrat parser in Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+future-regex = ["regex"]
 
 [[package]]
 name = "toml"
@@ -273,9 +328,13 @@ standard = ["websockets (>=9.1)", "httptools (>=0.2.0,<0.3.0)", "watchgod (>=0.6
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f77db24408ca4cab8c1958bb87cc06b1cd9eacd1f75e72d38f07b82e55c67afb"
+content-hash = "331bd3c112b7d1bf55b1e6b378c5eff4056a00014e85810f3069293aee091b90"
 
 [metadata.files]
+arrow = [
+    {file = "arrow-0.14.7-py2.py3-none-any.whl", hash = "sha256:4bfacea734ead51495dc47df00421ecfd4ca1f2c0fbe58b9a26eaeddedc31caf"},
+    {file = "arrow-0.14.7.tar.gz", hash = "sha256:67f8be7c0cf420424bc62d8d7dc40b44e4bb2f7b515f9cc2954fb36e35797656"},
+]
 asgiref = [
     {file = "asgiref-3.4.1-py3-none-any.whl", hash = "sha256:ffc141aa908e6f175673e7b1b3b7af4fdb0ecb738fc5c8b88f69f055c2415214"},
     {file = "asgiref-3.4.1.tar.gz", hash = "sha256:4ef1ab46b484e3c706329cedeff284a5d40824200638503f5768edb6de7d58e9"},
@@ -315,6 +374,11 @@ gunicorn = [
 h11 = [
     {file = "h11-0.12.0-py3-none-any.whl", hash = "sha256:36a3cb8c0a032f56e2da7084577878a035d3b61d104230d4bd49c0c6b555a9c6"},
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
+]
+ics = [
+    {file = "ics-0.7-py2.py3-none-any.whl", hash = "sha256:bf5fbdef6e1e073afdadf1b996f0271186dd114a148e38e795919a1ae644d6ac"},
+    {file = "ics-0.7-py3.7.egg", hash = "sha256:3b606205b9582ad27dff77f9b227a30d02fdac532731927fe39df1f1ddf8673f"},
+    {file = "ics-0.7.tar.gz", hash = "sha256:81113a2bb3166c1afcd71cd450c968d40efc385601e9d8344733e00ad8f53429"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
@@ -368,13 +432,25 @@ pytest = [
     {file = "pytest-6.2.4-py3-none-any.whl", hash = "sha256:91ef2131a9bd6be8f76f1f08eac5c5317221d6ad1e143ae03894b862e8976890"},
     {file = "pytest-6.2.4.tar.gz", hash = "sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b"},
 ]
+python-dateutil = [
+    {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
+    {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
+]
 requests = [
     {file = "requests-2.25.1-py2.py3-none-any.whl", hash = "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"},
     {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
 ]
+six = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
 starlette = [
     {file = "starlette-0.14.2-py3-none-any.whl", hash = "sha256:3c8e48e52736b3161e34c9f0e8153b4f32ec5d8995a3ee1d59410d92f75162ed"},
     {file = "starlette-0.14.2.tar.gz", hash = "sha256:7d49f4a27f8742262ef1470608c59ddbc66baf37c148e938c7038e6bc7a998aa"},
+]
+tatsu = [
+    {file = "TatSu-5.6.1-py2.py3-none-any.whl", hash = "sha256:7cf03e15ab170fd91489b855cd8a4942b6cd1ac5e0eabcb852793a716600dbf0"},
+    {file = "TatSu-5.6.1.zip", hash = "sha256:6a4f07aa7bfe9dfbee8015824feaf13f0b1a89577e2ee5a4a62c18630c309d4e"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
