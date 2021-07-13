@@ -11,7 +11,7 @@ async def root():
 
 
 @app.get("/cal/{cal_uri:path}")
-async def parse_cal(response: Response, cal_uri: str):
-    updated_cal = tools.futz_with_ical(cal_uri)
+async def parse_cal(cal_uri: str, strip: str = None):
+    updated_cal = tools.futz_with_ical(cal_uri, strip)
 
     return PlainTextResponse(content=updated_cal, media_type="text/calendar")

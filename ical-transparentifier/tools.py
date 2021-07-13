@@ -16,12 +16,17 @@ def _standardize_uri(uri: str) -> str:
     return parsed.geturl()
 
 
-def futz_with_ical(uri: str) -> str:
+def futz_with_ical(uri: str, strip: str) -> str:
     cal_uri = _standardize_uri(uri)
     original_cal = rsession.get(cal_uri).text
 
     c = Calendar(original_cal)
-
+    cn = Calendar()
     for event in c.events:
         event.transparent = True
-    return str(c)
+        if strip:
+            if strip in event.name:
+                continue
+        cn.events.add(event)
+    del c
+    return str(cn)
