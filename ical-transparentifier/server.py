@@ -27,7 +27,7 @@ async def root():
 @app.get("/cal/{cal_uri:path}", status_code=status.HTTP_400_BAD_REQUEST)
 async def parse_cal(response: Response, cal_uri: str, strip: str = None):
     try:
-        updated_cal, removed_items = tools.futz_with_ical(cal_uri, strip)
+        updated_cal, removed_items = await tools.futz_with_ical(cal_uri, strip)
     except FailedParse as e:
         return {"error": "Could not parse ical structure", "url": cal_uri}
     except ConnectionError:

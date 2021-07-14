@@ -17,7 +17,7 @@ def _standardize_uri(uri: str) -> str:
     return parsed.geturl()
 
 
-def futz_with_ical(uri: str, strip: str) -> (str, int):
+async def futz_with_ical(uri: str, strip: str) -> (str, int):
     cal_uri = _standardize_uri(uri)
     original_cal = rsession.get(cal_uri).text
     c = Calendar(original_cal)
