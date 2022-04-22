@@ -7,7 +7,7 @@ from tatsu.exceptions import FailedParse
 
 from . import tools
 from ._version import VERSION
-from .models import CalendarResponse, ErrorResponse, SourceUrl, SourceUrlResponse
+from .models import CalendarResponse, SourceUrl, SourceUrlResponse
 
 description = """
 If you (like me) have the pagerduty ics imported into your google calendar, this tool could be your savior!
@@ -32,8 +32,7 @@ app = FastAPI(
         "url": "https://whi.tw/ell",
         "email": "ical-transparentifier@mail.whi.tw",
     },
-    docs_url=None,
-    redoc_url="/",
+    docs_url="/",
 )
 
 

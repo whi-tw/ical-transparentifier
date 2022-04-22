@@ -38,19 +38,6 @@ class SourceUrl(BaseModel):
         }
 
 
-class ErrorResponse(BaseModel):
-    error: str = "An error occurred"
-    context: SourceUrl
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "error": "An error occurred",
-                "context": SourceUrl.Config.schema_extra["example"],
-            }
-        }
-
-
 class SourceUrlResponse(SourceUrl):
     url: str
     source_url: str = Field(title="URL encoded representation of `source_url`")
