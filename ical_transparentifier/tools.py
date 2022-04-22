@@ -1,13 +1,13 @@
+from typing import Tuple
 from urllib.parse import urlparse
 
 import requests
-import tatsu.exceptions
 from ics import Calendar
 from requests.adapters import HTTPAdapter
 
 webcal_adapter = HTTPAdapter()
 rsession = requests.session()
-rsession.mount('webcal://', webcal_adapter)
+rsession.mount("webcal://", webcal_adapter)
 
 
 def _standardize_uri(uri: str) -> str:
@@ -17,7 +17,7 @@ def _standardize_uri(uri: str) -> str:
     return parsed.geturl()
 
 
-async def futz_with_ical(uri: str, strip: str) -> (str, int):
+async def futz_with_ical(uri: str, strip: str) -> Tuple[str, int]:
     cal_uri = _standardize_uri(uri)
     original_cal = rsession.get(cal_uri).text
     c = Calendar(original_cal)

@@ -1,0 +1,30 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Dev Server (uvicorn)",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["ical_transparentifier.main:app", "--reload"],
+      "jinja": true,
+      "justMyCode": true
+    },
+    {
+      "name": "Prod Server (gunicorn)",
+      "type": "python",
+      "request": "launch",
+      "module": "gunicorn",
+      "args": [
+        "ical_transparentifier.main:app",
+        "--workers",
+        "4",
+        "--worker-class",
+        "uvicorn.workers.UvicornWorker"
+      ]
+    }
+  ]
+}

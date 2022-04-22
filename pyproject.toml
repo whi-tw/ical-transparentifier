@@ -5,15 +5,19 @@ description = "Proxy that modifies events in a webcal and makes them transparent
 authors = ["Tom Whitwell <tom@whi.tw>"]
 
 [tool.poetry.dependencies]
-python = "3.9.6"
-requests = "^2.25.1"
-uvicorn = "^0.14.0"
-fastapi = "^0.66.0"
+python = "3.10.4"
+requests = "^2.27.1"
+uvicorn = "^0.17.6"
+fastapi = "^0.75.2"
 gunicorn = "^20.1.0"
 ics = "^0.7"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.4"
+pytest = "^7.1.1"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+autoflake = "^1.4"
+isort = "^5.10.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
